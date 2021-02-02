@@ -1,0 +1,23 @@
+function DifCent(f,x,h)
+    c = f(x+h) - f(x-h)
+    der = c/(2*h)
+    return der
+end
+
+function SpeedyVerlet(x_0,v_0,h,m,t_0,t_f)
+    N = 
+    times = t_0:h:t_f
+    n = length(times)
+    SV = zeros(2*length(x_0),n)
+    SV[1:length(x_0),1] = x_0
+    SV[length(x_0):2*length(x_0),1] = v_0
+    acc = #Traer derivada numérica pa' acá y derivar la velocidad
+    #F es el gradiente negativo del potencial de Lennard Jones
+    for k in 2:n
+        SV[1:length(x_0),k] = SV[1:length(x_0),k-1] + h*(SV[length(x_0):2*length(x_0),k-1]) + (h^2.0)*(m)*(acc) #acc a t_k-1
+        SV[length(x_0):2*length(x_0),k] = SV[length(x_0):2*length(x_0),k-1] + (h/2.0)*(acc(t_k-1) + acc(t_k))
+    end
+    return(times,SV)
+end   
+
+    
